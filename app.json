@@ -10,6 +10,9 @@
       "SECRET_KEY": {
         "description": "A secret key for a particular Django installation.",
         "generator": "secret"
+      },
+      "DISABLE_COLLECTSTATIC": {
+        "value": 1    
       }
     },
     "buildpacks": [
