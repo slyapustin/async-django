@@ -1,0 +1,20 @@
+{
+    "name": "Django Async",
+    "description": "Django Async Application on Heroku",
+    "repository": "https://github.com/slyapustin/async-django",
+    "keywords": [
+      "django",
+      "async"
+    ],
+    "env": {
+      "SECRET_KEY": {
+        "description": "A secret key for a particular Django installation.",
+        "generator": "secret"
+      }
+    },
+    "buildpacks": [
+      {
+        "url": "heroku/python"
+      }
+    ]
+  }

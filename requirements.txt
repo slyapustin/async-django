@@ -1,1 +1,2 @@
 Django==3.1a1
+uvicorn==0.11.5
