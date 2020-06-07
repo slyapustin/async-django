@@ -19,5 +19,10 @@
       {
         "url": "heroku/python"
       }
-    ]
+    ],
+    "addons": [
+        {
+            "plan": "heroku-redis"
+        }
+    ]    
   }
