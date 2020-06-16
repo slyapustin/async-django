@@ -17,18 +17,24 @@ def index(request):
 
 
 async def publish(request):
-    redis = await aioredis.create_redis(settings.REDIS_URL)
+    redis = await aioredis.create_redis_pool(settings.REDIS_URL)
     await redis.publish(CHANNEL_NAME, request.body.decode())
+    redis.close()
+    await redis.wait_closed()
     return HttpResponse()
 
 
 async def subscribe(request):
-    redis = await aioredis.create_redis(settings.REDIS_URL)
+    redis = await aioredis.create_redis_pool(settings.REDIS_URL)
     res = await redis.subscribe(CHANNEL_NAME)
     ch1 = res[0]
     if await ch1.wait_message():
         msg = await ch1.get()
+        redis.close()
+        await redis.wait_closed()
         return HttpResponse(msg)
     else:
         await sub.unsubscribe(CHANNEL_NAME)
+        redis.close()
+        await redis.wait_closed()       
         return HttpResponse(status=204)
