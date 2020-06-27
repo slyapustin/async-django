@@ -4,6 +4,6 @@ from app import views
 
 urlpatterns = [
     path('', views.index),
-    path('publish', views.publish),
-    path('subscribe', views.subscribe),
+    path('publish', views.publish, name='publish'),
+    path('subscribe', views.subscribe, name='subscribe'),
 ]
